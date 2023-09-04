@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.gmail.nnrapiti.calculator.Calculator.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalculatorTest {
 
@@ -12,88 +13,67 @@ public class CalculatorTest {
         int result = addNumbers(5, 11);
         assertEquals(16, result);
     }
+
     @Test
-    public void getFirstNumberSingleDigit(){
-        String[] args = new String[]{"5"};
-        assertEquals(5, getXFromArgs(args));
-    }
-    @Test
-    public void getFirstNumberMultipleDigitSameSpace(){
-        String[] args = new String[]{"38"};
-        assertEquals(38, getXFromArgs(args));
+    public void subtractionFunction(){
+        int result = subtractNumbers(11, 5);
+        assertEquals(6, result);
     }
 
     @Test
-    public void getFirstNumberMultipleDigitDifferentSpace(){
-        String[] args = new String[]{"3", "8"};
-        assertEquals(38, getXFromArgs(args));
-    }
-    @Test
-    public void getFirstNumberMultipleDigitDifferentSpaceQuiteAFewNumbers(){
-        String[] args = new String[]{"3", "8", "9", "7", "4", "2", "3"};
-        assertEquals(3897423, getXFromArgs(args));
+    public void multiplicationFunction(){
+        int result = multiplyNumbers(25, 3);
+        assertEquals(75, result);
     }
 
     @Test
-    public void getFirstNumberSingleDigitWithOperator(){
-        String[] args = new String[]{"5", "ADD"};
-        assertEquals(5, getXFromArgs(args));
+    public void divisionFunction(){
+        int result = divideNumbers(33, 11);
+        assertEquals(3, result);
     }
 
     @Test
-    public void getFirstNumberMultipleDigitSameSpaceWithOperator(){
-        String[] args = new String[]{"38", "ADD"};
-        assertEquals(38, getXFromArgs(args));
+    public void performMultiply(){
+        int x = 5;
+        int y = 2;
+        String operation = "MULTIPLY";
+        int result = doOperation( x, operation, y);
+        assertEquals(10, result);
     }
 
     @Test
-    public void getFirstNumberMultipleDigitDifferentSpaceWithOperator(){
-        String[] args = new String[]{"3", "8", "ADD"};
-        assertEquals(38, getXFromArgs(args));
+    public void performAddition(){
+        int x = 17;
+        int y = 2;
+        String operation = "ADD";
+        int result = doOperation( x, operation, y);
+        assertEquals(19, result);
+    }
+    @Test
+    public void performSubtract(){
+        int x = 17;
+        int y = 2;
+        String operation = "SUBTRACT";
+        int result = doOperation( x, operation, y);
+        assertEquals(15, result);
+    }
+    @Test
+    public void performDivide(){
+        int x = 15;
+        int y = 3;
+        String operation = "DIVIDE";
+        int result = doOperation( x, operation, y);
+        assertEquals(5, result);
     }
 
     @Test
-    public void getOperatorADD(){
-        String[] args = new String[]{"5", "ADD"};
-        assertEquals("ADD", getOperatorFromArgs(args));
+    public void performUnknownOperation(){
+        int x = 15;
+        int y = 3;
+        String operation = "UNKNOWN";
+        assertThrows(IllegalStateException.class, ()-> doOperation( x, operation, y) );
     }
 
-    @Test
-    public void getOperatorMINUS(){
-        String[] args = new String[]{"5", "MINUS"};
-        assertEquals("MINUS", getOperatorFromArgs(args));
-    }
 
-    @Test
-    public void getSecondNumberSingleDigit(){
-        String[] args = new String[]{"5", "ADD", "3"};
-        assertEquals(3, getYFromArgs(args));
-    }
-    @Test
-    public void getSecondNumberMultipleDigitSameSpace(){
-        String[] args = new String[]{"38", "MINUS", "65"};
-        assertEquals(65, getYFromArgs(args));
-    }
-
-    @Test
-    public void getSecondNumberMultipleDigitDifferentSpace(){
-        String[] args = new String[]{"3", "8", "ADD", "5", "6"};
-        assertEquals(56, getYFromArgs(args));
-    }
-    @Test
-    public void getSecondNumberMultipleDigitDifferentSpaceQuiteAFewNumbers(){
-        String[] args = new String[]{"3", "8", "9", "7", "4", "2", "3", "ADD", "2", "3", "9", "7", "9", "7"};
-        assertEquals(239797, getYFromArgs(args));
-    }
-
-    @Test
-    public void addNumbersUsingStringArray(){
-        String[] args = new String[]{"6", "ADD", "5"};
-        int x = getXFromArgs(args);
-        int y = getYFromArgs(args);
-        int result = addNumbers(x, y);
-        assertEquals(11, result);
-
-    }
 
 }

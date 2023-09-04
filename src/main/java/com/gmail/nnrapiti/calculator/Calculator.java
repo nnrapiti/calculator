@@ -4,12 +4,27 @@ public class Calculator {
     public static void main(String[] args){
         int x = getXFromArgs(args);
         int y = getYFromArgs(args);
-        System.out.println(addNumbers(x, y));
+        String operation = getOperatorFromArgs(args);
+
+        System.out.println(doOperation(x, operation, y));
     }
 
     public static int addNumbers(int x, int y){
         return x + y;
     }
+
+    public static int subtractNumbers(int x, int y){
+        return x - y;
+    }
+
+    public static int multiplyNumbers(int x, int y){
+        return x * y;
+    }
+    public static int divideNumbers(int x, int y){
+        return x / y;
+    }
+
+
 
     public static int getXFromArgs(String[] args){
         return getNumberFromStringArray(args);
@@ -52,6 +67,17 @@ public class Calculator {
             fullNumber.append(number);
         }
         return Integer.parseInt(fullNumber.toString());
+    }
+
+    public static int doOperation(int x, String operation, int y){
+
+        return switch (operation){
+            case "ADD" -> addNumbers(x, y);
+            case "SUBTRACT" -> subtractNumbers(x, y);
+            case "MULTIPLY" -> multiplyNumbers(x, y);
+            case "DIVIDE" -> divideNumbers(x, y);
+            default -> throw new IllegalStateException("Unexpected value: " + operation);
+        };
     }
 
 
