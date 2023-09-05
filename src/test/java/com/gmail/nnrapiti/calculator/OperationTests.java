@@ -3,11 +3,11 @@ package com.gmail.nnrapiti.calculator;
 import org.junit.jupiter.api.Test;
 
 import static com.gmail.nnrapiti.calculator.Calculator.*;
+import static com.gmail.nnrapiti.calculator.Calculator.doOperation;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class CalculatorTest {
-
+public class OperationTests {
     @Test
     public void additionFunction(){
         int result = addNumbers(5, 11);
@@ -73,7 +73,4 @@ public class CalculatorTest {
         String operation = "UNKNOWN";
         assertThrows(IllegalStateException.class, ()-> doOperation( x, operation, y) );
     }
-
-
-
 }
